@@ -34,13 +34,14 @@ def main ():
     if openPorts:
         if not openScan:
             openPorts = scriptsScan (target, openPorts, log)
-            print ('\033[34mSummary \033[0m')
+            print ('\033[34m[+] Summary \033[0m')
             for openPort in openPorts:
                 print ('\033[32m' + openPort.port + '\033[31m\t' + openPort.service + '\033[32m\t' + openPort.product
                        + ' ' + openPort.version + '\033[0m')
                 if openPort.vuln:
                     print ('\033[31mVulnerabilities\033[32m')
                     print (openPort.vuln, sep = ', ')
+                    print ('\033[0m')
                 else:
                     print ('\033[31m\t\tNo vuln found\033[0m')
 
