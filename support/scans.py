@@ -41,8 +41,8 @@ def scriptsScan (target, openPorts, log):
         service = openPort.service
         vulns = []
         scanOp = xml + '/' + target + '_' + service + '_scriptScan.xml'
-        print ('\t\t\033[31m nmap -sV -sC --script=vuln -p ' + port + ' ' + target + '\033[0m')
-        scanResult = subprocess.run (['nmap', '-Pn', '-sV', '-sC', '--script=vuln', '-p', port, target, '-oX', scanOp],
+        print ('\t\t\033[31m nmap -sV -A --script=default,vuln -p ' + port + ' ' + target + '\033[0m')
+        scanResult = subprocess.run (['nmap', '-Pn', '-sV', '-A', '--script=default,vuln', '-p', port, target, '-oX', scanOp],
                                      stdout = subprocess.PIPE, universal_newlines = True)
         with open (log, 'a') as l:
             l.write ( '\n'.join (scanResult.stdout.splitlines()) )
